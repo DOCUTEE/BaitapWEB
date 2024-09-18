@@ -61,6 +61,7 @@ public class LoginController extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
+//		System.out.print("HELLOO LOGIN");
 		response.setContentType("text/html");
 		response.setCharacterEncoding("UTF-8");
 		request.setCharacterEncoding("UTF-8");
@@ -68,12 +69,11 @@ public class LoginController extends HttpServlet {
 		String password = request.getParameter("password");
 		boolean isRememberMe = false;
 		String remember = request.getParameter("remember");
-
+		System.out.print(remember);
 		if ("on".equals(remember)) {
 			isRememberMe = true;
 		}
 		String alertMsg = "";
-		doGet(request, response);
 		if (username.isEmpty() || password.isEmpty()) {
 			alertMsg = "Tài khoản hoặc mật khẩu không được rỗng";
 			request.setAttribute("alert", alertMsg);

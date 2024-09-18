@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action=“/loginWeb/login" method="post">
+	<form action="login" method="post">
 		<h2>Tạo tài khoản mới</h2>
 		<c:if test="${alert !=null}">
 			<h3 class="alert alertdanger">${alert}</h3>
@@ -15,11 +15,15 @@
 		<section>
 			<label class="input login-input">
 				<div class="input-group">
-					<span class="input-group-addon"><i class="fa fauser"></i></span> <input
-						type="text" placeholder="Tài khoản" name="username"
-						class="form-control">
+					<span class="input-group-addon"><i class="fa fauser"></i></span> 
+					<input type="text" placeholder="Tài khoản" name="username" class="form-control">
+					<span class="input-group-addon"><i class="fa fauser"></i></span> 
+					<input type="password" placeholder="password" name="password" class="form-control">
+					<input type="checkbox" name="remember"> Ghi nhớ tôi					
 				</div>
 			</label>
 		</section>
+		<input type="submit" value="Đăng Nhập">
+	</form>
 </body>
 </html>

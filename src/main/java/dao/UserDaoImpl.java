@@ -14,13 +14,15 @@ public class UserDaoImpl implements UserDao {
 	public ResultSet rs = null;
 
 	public User findByUserName(String username) {
-		String sql = "SELECT * FROM [User] WHERE username = ? ";
+		String sql = "SELECT * FROM [Users] WHERE username = ? ";
 		try {
 			conn = new DBConnection().getConnection();
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, username);
+			System.out.print(username);
 			rs = ps.executeQuery();
 			while (rs.next()) {
+				System.out.print("TAO VAO DUOC DAY ROI");
 				User user = new User();
 				user.setId(rs.getInt("id"));
 				user.setEmail(rs.getString("email"));
@@ -36,6 +38,7 @@ public class UserDaoImpl implements UserDao {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.print("Deo co");
 		return null;
 	}
 
