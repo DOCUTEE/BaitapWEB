@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,23 +8,54 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="login" method="post">
-		<h2>Tạo tài khoản mới</h2>
+	<form action="/loginWeb/login" method="post">
+		<h2>Đăng nhập</h2>
 		<c:if test="${alert !=null}">
-			<h3 class="alert alertdanger">${alert}</h3>
+			<h3 class="alert alert danger">${alert}</h3>
 		</c:if>
 		<section>
-			<label class="input login-input">
-				<div class="input-group">
-					<span class="input-group-addon"><i class="fa fauser"></i></span> 
-					<input type="text" placeholder="Tài khoản" name="username" class="form-control">
-					<span class="input-group-addon"><i class="fa fauser"></i></span> 
-					<input type="password" placeholder="password" name="password" class="form-control">
-					<input type="checkbox" name="remember"> Ghi nhớ tôi					
+			<label class="input login-input"> 
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-user"></i></span>
+				<input type="text" placeholder="Tài khoản" name="username"
+					class="form-control">
 				</div>
 			</label>
 		</section>
-		<input type="submit" value="Đăng Nhập">
+		<section>
+			<label class="input login-input"> 
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-user"></i></span>
+				<input type="text" placeholder="Mật khẩu" name="password"
+					class="form-control">
+				</div>
+			</label>
+		</section>
+		<section>
+			<label class="input login-input"> 
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-user"></i></span>
+				<input type="checkbox" name="rememberme"
+					class="form-control">Nhớ tôi
+				</div>
+			</label>
+		</section>
+		
+		<section>
+			<label class="input login-input"> 
+			<div class="input-group">
+				<span class="input-group-addon"><i class="fa fa-user"></i></span>
+				<input type="submit" value="Login"
+					class="form-control">
+				</div>
+			</label>
+		</section>
+		<!-- Thêm liên kết "Quên mật khẩu" -->
+		<section>
+			<div class="input-group">
+				<a href="forgetPassword.jsp" class="forget-password">Quên mật khẩu?</a>
+			</div>
+		</section>
 	</form>
 </body>
 </html>

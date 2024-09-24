@@ -28,13 +28,13 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public boolean register(String username, String password, String email, String fullname, String phone) {
+	public boolean register(String username, String password, String email, String fullname, int roleID, String phone) {
 		if (userDao.checkExistUsername(username)) {
 			return false;
 		}
 		long millis = System.currentTimeMillis();
 		java.sql.Date date = new java.sql.Date(millis);
-		userDao.insert(new User(0,email, username, fullname, password, null, 5, phone, date));
+		userDao.insert(new User(0,email, username, fullname, password, null, roleID, phone, date));
 		return true;
 	}
 
@@ -54,5 +54,15 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void insert(User user) {
 		userDao.insert(user);
+	}
+	@Override
+	public User getFromMail(String mail) {
+		return userDao.findByMail(mail);
+	}
+
+	@Override
+	public void changePass(String mail, String newPassword) {
+		// TODO Auto-generated method stub
+		userDao.changePass(mail, newPassword);
 	}
 }

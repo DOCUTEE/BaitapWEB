@@ -86,17 +86,16 @@ public class LoginController extends HttpServlet {
 			HttpSession session = request.getSession(true);
 			session.setAttribute("account", user);
 			if (isRememberMe) {
-				saveRemeberMe(response, username);
+				saveRemeberMe(response, username); 
 			}
-
 			response.sendRedirect(request.getContextPath() + "/waiting");
-		} else {
+		} 
+		else {
 			alertMsg = "Tài khoản hoặc mật khẩu không đúng";
 			request.setAttribute("alert", alertMsg);
 			request.getRequestDispatcher("/views/login.jsp").forward(request, response);
 		}
 	}
-
 	private void saveRemeberMe(HttpServletResponse response, String username) {
 		Cookie cookie = new Cookie(COOKIE_REMEMBER, username);
 		cookie.setMaxAge(30 * 60);

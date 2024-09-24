@@ -71,9 +71,11 @@ public class RegisterController extends HttpServlet {
 		String email = request.getParameter("email");
 		String fullname = request.getParameter("fullname");
 		String phone = request.getParameter("phone");
+		int roleID = Integer.parseInt(request.getParameter("options"));
+		
 		UserService service = new UserServiceImpl();
 		String alertMsg = "";
-		doGet(request, response);
+//		doGet(request, response);
 		if (service.checkExistEmail(email)) {
 			alertMsg = "Email đã tồn tại!";
 			request.setAttribute("alert", alertMsg);
@@ -86,7 +88,7 @@ public class RegisterController extends HttpServlet {
 			request.getRequestDispatcher(REGISTER).forward(request, response);
 			return;
 		}
-		boolean isSuccess = service.register(username, password, email, fullname, phone);
+		boolean isSuccess = service.register(username, password, email, fullname, roleID ,phone);
 		if (isSuccess) {
 			// SendMail sm = new SendMail();
 			// sm.sendMail(email, "Shopping.iotstar.vn", "Welcome to Shopping. Please Login

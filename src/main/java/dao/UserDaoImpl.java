@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import configs.DBConnection;
 import model.User;
@@ -110,6 +111,66 @@ public class UserDaoImpl implements UserDao {
 	public boolean checkExistPhone(String phone) {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	@Override
+	public User findByMail(String mail) {
+		String sql = "SELECT * FROM [Users] WHERE mail = ? ";
+		try {
+			conn = new DBConnection().getConnection();
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, mail);
+			System.out.print(mail);
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				System.out.print("TAO VAO DUOC DAY ROI");
+				User user = new User();
+				user.setId(rs.getInt("id"));
+				user.setEmail(rs.getString("email"));
+				user.setUserName(rs.getString("username"));
+				user.setFullName(rs.getString("fullname"));
+				user.setPassWord(rs.getString("password"));
+				user.setAvatar(rs.getString("avatar"));
+				user.setRoleid(Integer.parseInt(rs.getString("roleid")));
+				user.setPhone(rs.getString("phone"));
+				user.setCreatedDate(rs.getDate("createdDate"));
+				return user;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		System.out.print("Deo co");
+		return null;
+	}
+	@Override
+	public void changePass(String mail, String newPassword) {
+	    String sql = "UPDATE Users SET passWord = ? WHERE email = ?";
+	    try {
+	        conn = new DBConnection().getConnection();
+	        ps = conn.prepareStatement(sql);
+	        
+	        // Set the new password
+	        ps.setString(1, newPassword);
+	        ps.setString(2, mail);
+	        
+	        // Execute the update
+	        int rowsAffected = ps.executeUpdate();
+	        if (rowsAffected > 0) {
+	            System.out.println("Password updated successfully for: " + mail);
+	        } else {
+	            System.out.println("No user found with the email: " + mail);
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } finally {
+	        // Close resources
+	        try {
+	            if (rs != null) rs.close();
+	            if (ps != null) ps.close();
+	            if (conn != null) conn.close();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
 	}
 	
 }

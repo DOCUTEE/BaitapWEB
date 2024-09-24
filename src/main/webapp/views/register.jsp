@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="/loginWeb/register" method="post">
+	<form action="register" method="post">
 		<h2>Tạo tài khoản mới</h2>
 		<c:if test="${alert !=null}">
 			<h3 class="alert alertdanger">${alert}</h3>
@@ -27,6 +27,11 @@
 						class="form-control">
 						<input type="text" placeholder="phone" name="phone"
 						class="form-control">
+						<select id="choices" name="options">
+							<option value="1">Nguoi dung</option>
+							<option value="2">Manager</option>
+							<option value="3">Admin</option>
+						</select>
 						<input type="Submit" value="Submit">
 				</div>
 			</label>

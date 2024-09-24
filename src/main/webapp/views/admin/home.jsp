@@ -8,7 +8,7 @@
 </head>
 <body>
 <%@ include file="/common/header.jsp" %>
-	trang chủ của user
+	trang chủ của admin
 <%@ include file="/common/footer.jsp" %>
 </body>
 </html>
